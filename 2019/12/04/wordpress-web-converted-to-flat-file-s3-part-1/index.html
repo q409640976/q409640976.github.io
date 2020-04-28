@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WordPress web converted to flat file S3 – Part 1 – My Blog</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//cdn.statically.io">
+
+
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=64/My+Blog.png" sizes="64x64">
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=128/My+Blog.png" sizes="128x128">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.statically.io/favicons/g/square=1,s=256/My+Blog.png">
+<link rel="stylesheet" id="wp-block-library-css" href="https://cdn.statically.io/wp/c/5.4/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-bootstrap-grid-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/bootstrap-grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-5-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/fontawesome-all.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-fonts-css" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C400i%2C700%2C700i%7CRubik%3A400%2C400i%2C700%2C700i&subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-style-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/style.css" type="text/css" media="all">
+<style id="amphibious-style-inline-css" type="text/css">
+.archive-title-control { clip: rect(1px, 1px, 1px, 1px); position: absolute; }
+</style>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery-migrate.min.js"></script>
+
+
+
+
+
+
+
+
+
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	
+	</head>
+<body class="post-template-default single single-post postid-14 single-format-standard has-site-branding has-wide-layout has-right-sidebar">
+<div id="page" class="site-wrapper site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+<header id="masthead" class="site-header">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<div class="site-header-inside-wrapper">
+					
+<div class="site-branding-wrapper">
+	<div class="site-logo-wrapper"></div>
+	<div class="site-branding">
+					<p class="site-title"><a href="https://q409640976.github.io/" title="My Blog" rel="home">My Blog</a></p>
+		
+				<p class="site-description">
+			My WordPress Blog		</p>
+			</div>
+</div>
+
+<nav id="site-navigation" class="main-navigation">
+	<div class="main-navigation-inside">
+		<div class="toggle-menu-wrapper">
+			<a href="#header-menu-responsive" title="Menu" class="toggle-menu-control">
+				<span class="toggle-menu-label">Menu</span>
+			</a>
+		</div>
+
+		<div id="menu-1" class="site-header-menu-wrapper site-header-menu-responsive-wrapper"><ul class="site-header-menu site-header-menu-responsive">
+<li><a href="https://q409640976.github.io/">首页</a></li><li class="page_item page-item-2"><a href="https://q409640976.github.io/sample-page/">Sample Page</a></li>
+</ul></div>
+	</div>
+</nav>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>
+
+	<div id="content" class="site-content">
+
+	<div class="site-content-inside">
+		<div class="container">
+			<div class="row">
+
+				<div id="primary" class="content-area col-16 col-sm-16 col-md-16 col-lg-11 col-xl-11 col-xxl-11">
+					<main id="main" class="site-main">
+
+						<div id="post-wrapper" class="post-wrapper post-wrapper-single post-wrapper-single-post">
+												
+							
+<div class="post-wrapper-hentry">
+	<article id="post-14" class="post-14 post type-post status-publish format-standard hentry category-uncategorized">
+		<div class="post-content-wrapper post-content-wrapper-single post-content-wrapper-single-post">
+
+			
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+					<header class="entry-header">
+						<h1 class="entry-title">WordPress web converted to flat file S3 – Part 1</h1>					</header>
+
+					<div class="entry-meta entry-meta-header-after">
+						<span class="byline entry-meta-icon">by <span class="author vcard"><a class="entry-author-link url fn n" href="https://q409640976.github.io/author/admin/" rel="author"><span class="entry-author-name">admin</span></a></span></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Posted on</span><a href="https://q409640976.github.io/2019/12/04/wordpress-web-converted-to-flat-file-s3-part-1/" rel="bookmark"><time class="entry-date published updated" datetime="2019-12-04T18:45:46+08:00">2019-12-04</time></a></span>					</div>
+				</div>
+
+				<div class="entry-content">
+					<div>
+<p>These are the instructions I used to convert this WordPress web using MySQL to flat files on AWS S3</p>
+<p>You will need:</p>
+<div class="wp-block-group">
+<div class="wp-block-group__inner-container">
+<ul>
+<li>An AWS account</li>
+<li>A website</li>
+<li>Xampp</li>
+</ul>
+</div>
+</div>
+<p>Generate the static website files.</p>
+<pre class="wp-block-verse">As this is a WordPress site I used Xampp on my laptop to store the website files and database.<br>I Loaded the plugin WP2Static onto the site.<br>I set the Settings/Permalinks value to "Numeric"<br><br>n.b. I'm not sure why this was needed but its one step I had to take to get the static website working<br><br>To export the static website I then went to the WP2Static tab and entered the followin<br><img class="wp-image-489" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled.png 1611w,http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled-300x155.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled-1024x528.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled-768x396.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled-1536x792.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/Untitled-1200x619.png 1200w" sizes="(max-width: 1611px) 100vw, 1611px"></pre>
+<p>Create the S3 bucket</p>
+<pre class="wp-block-verse">Create the S3 bucket for your website, in this case isitdevops.com<br>Ensure the bucket policy allows all access.<br><img class="wp-image-491" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-scaled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-scaled.png 2560w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-300x88.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-1024x300.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-768x225.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-1536x450.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-2048x600.png 2048w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-2-1200x352.png 1200w" sizes="(max-width: 2560px) 100vw, 2560px"></pre>
+<p>Upload the website files</p>
+<pre class="wp-block-verse">Move into the bucket and select Upload<br><img class="wp-image-493" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4.png 1972w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4-300x108.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4-1024x367.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4-768x275.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4-1536x551.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-4-1200x430.png 1200w" sizes="(max-width: 1972px) 100vw, 1972px"><br>Drag/Drop the files, select Next, Select Grant Public Read Access and then Upload. <br><img class="wp-image-494" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-scaled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-scaled.png 2560w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-300x178.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-1024x607.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-768x455.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-1536x910.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-2048x1213.png 2048w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-5-1200x711.png 1200w" sizes="(max-width: 2560px) 100vw, 2560px"><br><img class="wp-image-495" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-scaled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-scaled.png 2560w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-300x180.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-1024x614.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-768x461.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-1536x922.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-2048x1229.png 2048w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-6-1200x720.png 1200w" sizes="(max-width: 2560px) 100vw, 2560px"><br><img class="wp-image-496" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-scaled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-scaled.png 2560w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-300x176.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-1024x600.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-768x450.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-1536x900.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-2048x1200.png 2048w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-7-1200x703.png 1200w" sizes="(max-width: 2560px) 100vw, 2560px"><br><img class="wp-image-497" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-scaled.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-scaled.png 2560w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-300x179.png 300w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-1024x610.png 1024w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-768x458.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-1536x916.png 1536w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-2048x1221.png 2048w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-8-1200x715.png 1200w" sizes="(max-width: 2560px) 100vw, 2560px"></pre>
+<p>Kick off the website</p>
+<pre class="wp-block-verse">Go to the bucket properties page and select the "Static Website Hosting"tab. <br><img class="wp-image-492" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-3-e1575454919117.png" alt=""><br><img class="wp-image-498" style="width: 900px;" src="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9.png" alt="" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9.png 1246w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9-267x300.png 267w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9-911x1024.png 911w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9-768x864.png 768w,http://devops.isitdevops.com/wp-content/uploads/2019/12/S3-9-1200x1349.png 1200w" sizes="(max-width: 1246px) 100vw, 1246px"><br>Enter index.html as the index document<br>Save the endpoint displayed in the popup.<br>Select Save.<br>Test the website using the endpointas the web address.</pre>
+
+</div>
+									</div>
+
+				<footer class="entry-meta entry-meta-footer">
+									</footer>
+			</div>
+
+		</div>
+	</article>
+</div>
+
+							
+<div class="entry-author">
+	<div class="author-avatar">
+		<img alt="" src="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=80&d=mm&r=g" srcset="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80">	</div>
+
+	<div class="author-heading">
+		<h2 class="author-title">
+            Published by <span class="author-name">admin</span>        </h2>
+	</div>
+
+	<p class="author-bio">
+				<a class="author-link" href="https://q409640976.github.io/author/admin/" rel="author">
+			View all posts by admin		</a>
+	</p>
+</div>
+
+							
+	<nav class="navigation post-navigation" role="navigation" aria-label="文章">
+		<h2 class="screen-reader-text">文章导航</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://q409640976.github.io/2019/06/13/where-it-all-started-goodbye-cybton/" rel="prev"><span class="meta-nav">Prev</span> <span class="post-title">Where it all started – goodbye Cybton</span></a></div><div class="nav-next"><a href="https://q409640976.github.io/2019/12/04/wordpress-web-converted-to-flat-file-s3-part-2/" rel="next"><span class="meta-nav">Next</span> <span class="post-title">WordPress web converted to flat file S3 – Part 2</span></a></div></div>
+	</nav>
+							
+												</div>
+
+					</main>
+				</div>
+
+				<div id="site-sidebar" class="sidebar-area col-16 col-sm-16 col-md-16 col-lg-5 col-xl-5 col-xxl-5">
+	<div id="secondary" class="sidebar widget-area sidebar-widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="https://q409640976.github.io/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">近期文章</h2>		<ul>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/28/hello-world/">Hello world!</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/05/operating-your-own-mail-server-is-a-pain/">Operating your own mail server is a pain</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/a-wordpress-site-on-s3-as-flat-files/">A wordpress site on S3 as flat files</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/using-terraform-to-create-a-mariadb-web/">Using Terraform to create a Mariadb Web</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2019/12/04/wordpress-web-converted-to-flat-file-s3-part-2/">WordPress web converted to flat file S3 – Part 2</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">近期评论</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href="https://wordpress.org/" rel="external nofollow ugc" class="url">A WordPress Commenter</a></span>发表在《<a href="https://q409640976.github.io/2020/04/28/hello-world/#comment-1">Hello world!</a>》</li></ul></aside>	</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+	<footer id="colophon" class="site-footer">
+		
+<div class="site-info">
+	<div class="site-info-inside">
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+					<div class="credits-wrapper">
+						<div class="credits credits-blog"></div><div class="credits credits-designer">Amphibious Theme by <a href="https://templatepocket.com" title="TemplatePocket">TemplatePocket</a> <span>⋅</span> Powered by <a href="https://wordpress.org" title="WordPress">WordPress</a></div>					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+	</footer>
+
+</div>
+
+<div class="overlay-effect"></div>
+
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/enquire.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/fitvids.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/hover-intent.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/superfish.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/custom.js"></script>
+</body>
+</html>
