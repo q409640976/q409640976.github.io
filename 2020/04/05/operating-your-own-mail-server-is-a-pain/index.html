@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Operating your own mail server is a pain – My Blog</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//cdn.statically.io">
+
+
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=64/My+Blog.png" sizes="64x64">
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=128/My+Blog.png" sizes="128x128">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.statically.io/favicons/g/square=1,s=256/My+Blog.png">
+<link rel="stylesheet" id="wp-block-library-css" href="https://cdn.statically.io/wp/c/5.4/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-bootstrap-grid-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/bootstrap-grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-5-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/fontawesome-all.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-fonts-css" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C400i%2C700%2C700i%7CRubik%3A400%2C400i%2C700%2C700i&subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-style-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/style.css" type="text/css" media="all">
+<style id="amphibious-style-inline-css" type="text/css">
+.archive-title-control { clip: rect(1px, 1px, 1px, 1px); position: absolute; }
+</style>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery-migrate.min.js"></script>
+
+
+
+
+
+
+
+
+
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	
+	</head>
+<body class="post-template-default single single-post postid-25 single-format-standard has-site-branding has-wide-layout has-right-sidebar">
+<div id="page" class="site-wrapper site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+<header id="masthead" class="site-header">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<div class="site-header-inside-wrapper">
+					
+<div class="site-branding-wrapper">
+	<div class="site-logo-wrapper"></div>
+	<div class="site-branding">
+					<p class="site-title"><a href="https://q409640976.github.io/" title="My Blog" rel="home">My Blog</a></p>
+		
+				<p class="site-description">
+			My WordPress Blog		</p>
+			</div>
+</div>
+
+<nav id="site-navigation" class="main-navigation">
+	<div class="main-navigation-inside">
+		<div class="toggle-menu-wrapper">
+			<a href="#header-menu-responsive" title="Menu" class="toggle-menu-control">
+				<span class="toggle-menu-label">Menu</span>
+			</a>
+		</div>
+
+		<div id="menu-1" class="site-header-menu-wrapper site-header-menu-responsive-wrapper"><ul class="site-header-menu site-header-menu-responsive">
+<li><a href="https://q409640976.github.io/">首页</a></li><li class="page_item page-item-2"><a href="https://q409640976.github.io/sample-page/">Sample Page</a></li>
+</ul></div>
+	</div>
+</nav>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>
+
+	<div id="content" class="site-content">
+
+	<div class="site-content-inside">
+		<div class="container">
+			<div class="row">
+
+				<div id="primary" class="content-area col-16 col-sm-16 col-md-16 col-lg-11 col-xl-11 col-xxl-11">
+					<main id="main" class="site-main">
+
+						<div id="post-wrapper" class="post-wrapper post-wrapper-single post-wrapper-single-post">
+												
+							
+<div class="post-wrapper-hentry">
+	<article id="post-25" class="post-25 post type-post status-publish format-standard hentry category-uncategorized">
+		<div class="post-content-wrapper post-content-wrapper-single post-content-wrapper-single-post">
+
+			
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+					<header class="entry-header">
+						<h1 class="entry-title">Operating your own mail server is a pain</h1>					</header>
+
+					<div class="entry-meta entry-meta-header-after">
+						<span class="byline entry-meta-icon">by <span class="author vcard"><a class="entry-author-link url fn n" href="https://q409640976.github.io/author/admin/" rel="author"><span class="entry-author-name">admin</span></a></span></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Posted on</span><a href="https://q409640976.github.io/2020/04/05/operating-your-own-mail-server-is-a-pain/" rel="bookmark"><time class="entry-date published updated" datetime="2020-04-05T23:17:59+08:00">2020-04-05</time></a></span>					</div>
+				</div>
+
+				<div class="entry-content">
+					<div>
+<p><strong>tl:dr;</strong> I’m going to tell you all the reasons you shouldn’t run your own mail server.</p>
+<p>I actually wanted to name this post “Thinking about running your own mail server? Here is why this is a bad idea” but I’d like for everyone to opt out of click bait titles. I stopped clicking on anything that sounds like click bait (Youtube, Twitter, News) as my brain got trained to see those as low quality time stealers. </p>
+<p>Anyway, I wanted to talk about my experience of running a mail server. Over the last 10+ years I’ve operated my own mail server on VMs hosted by <a href="http://netcup.de/">netcup.de</a>. (Not a paid ad, I promise) Their servers have decent performance and for just a few euros they are a steal. </p>
+<p>So I went and setup <a href="https://www.ispconfig.org/">ispconfig</a> – a management interface for basic web, mail and dns servers – to have a more simpler interface for configuration. Till Brehm (the maintainer of ispconfig) is doing an amazing job at developing that piece of software over the last decade. The interface is clean, neat and gives your customers basic settings to do self service if they want to.</p>
+<h2>Configuring a mail server is complex</h2>
+<p>Configuring your mail server is more than a couple configuration files. Its also very reliant on a clean and proper DNS configuration. You need to fulfill a few basic requirements for your emails to get delivered:</p>
+<ul>
+<li>A SMTP, IMAP and MTA systems</li>
+<li>A proper stable DNS setup (ideally with DNSSEC)</li>
+<li>SPF – a DNS record of what IPs/mail servers are allowed to send emails under your domain</li>
+<li>DKIM – automatic signatures for all your sent emails, so other mail servers can verify the messages originated from a trusted source</li>
+<li>DMARC – get reports of misuse of your mail services</li>
+<li>Rate limiting – don’t let your users send too many emails</li>
+<li>Monitoring – it happens from time to time that your mail server gets blacklisted</li>
+</ul>
+<p>So just installing ispconfig on your VM is certainly not going to get you all of the above. In fact all you get out of the box is the first point: a SMTP and IMAP server. The rest needs tedious manual config file adaption and looking through various other tools which can automate this work away.</p>
+<h3>SMTP, IMAP and MTA</h3>
+<p><strong>Quick intro to how email works:</strong> Your mail client connects to the SMTP server. SMTP is the protocol used to submit new emails for sending. The MTA then accepts those messages and forwards it to the receivers MTA. The receiving MTA checks its configuration to find the right IMAP account to store the email in. Your mail client connects to this IMAP account to view any stored emails.<br><em>(don’t quote me on the correctness of this)</em></p>
+<p>Email is one of the oldest protocols on the internet. One of the earliest versions has been specified in <a href="https://tools.ietf.org/html/rfc561">RFC 561</a> in 1973. The software we have today is equally as old and brittle. Over the years developers have added bits and pieces to support newer features like virus scanning and server side filtering. But none of the available open source systems are the easiest to configure.</p>
+<p>No wonder with how <a href="https://en.wikipedia.org/wiki/Comparison_of_mail_servers">feature packed those are nowadays</a>:</p>
+<figure class="wp-block-image size-large"><img src="https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02-1024x566.png" alt="" class="wp-image-959" srcset="https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02-1024x566.png 1024w,https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02-300x166.png 300w,https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02-768x425.png 768w,https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02-1536x849.png 1536w,https://bruck.me/wp-content/uploads/2020/04/Screenshot-from-2020-04-05-16-24-02.png 1709w" sizes="(max-width: 1024px) 100vw, 1024px"></figure>
+<p>I admit, not all are pure mail servers and deliver much more value like a webmail interface. But this greatly visualizes the complexity such programs already have. Usually those tools can only do subsets of the tasks of SMTP, MTA or IMAP. </p>
+<p>So for our use case of manually running our services we need to wire up Dovecot (as IMAP server), Postfix (as MTA/SMTP), sieve for server side filtering (which needs to interface with postifx) and amavis (for spam filtering) with a little bit of ClamAV (for virus scanning).</p>
+<p>True, there are solutions out there that bundle all of this into single binaries. This might be convenient because configuration is easier but will usually come as closed source and with a price tag (per user).</p>
+<p>Is your brain hurting yet? Cullum Smith has a <a href="https://www.c0ffee.net/blog/mail-server-guide/">great blog article on how to run to do such a setup</a>. Do I recommend it? <strong>NO!</strong> Hell no! Why? Well because if you got this far, you still haven’t checked all the other things so your mail actually gets delivered to other domains. Did I mention Backups yet?</p>
+<h3>Your DNS setup probably sucks</h3>
+<p>There is this joke I first heard when I started to look more into becoming a Site Reliability Engineer that when you are investigating an outage that <a href="https://www.reddit.com/r/sysadmin/comments/8cr1ve/it_is_always_dns/">“it is always DNS”</a>. In reality I’ve fallen into this trap several times, where I’ve looked at the server and running services. Everything seemed to work, but somehow the DNS got jammed up. Of course its the last thing I checked. (Got monitoring for your DNS? Of course you do!)</p>
+<p>DNS is a simple text protocol (ha!, just like email) that is the heart of the internet. Sure we could use IP addresses to connect to systems, but those change frequently (because IPv6 is still not a thing) and nobody can be expected to remember a bunch of numbers.</p>
+<p>The reason why DNS is hard, because we rely on it in such a fundamental way. It’s reliability is key to enable everything else to work. To increase the performance of DNS servers we have master/slave setups and anycast IPs. Are you planning on just setting up a DNS server on your one VM? Well, you are going to have a really bad time. </p>
+<p>Latency is probably going to be high and there is no fallback with use one nameserver. You probably want to use multiple nameservers that are scattered throughout the world. No, your registrar (the site you “buy” the domain) is probably not going to give you such a setup. </p>
+<p>Alright, then you use a hosted service from <a href="https://cloud.google.com/dns">Google Cloud DNS</a>, <a href="https://www.cloudns.net/">Cloudns</a> or <a href="https://aws.amazon.com/de/route53/">Route53</a>. Well good thinking, those vendors probably have the capacity to have a decent setup of servers throughout the world. But now you are trusting other entities with your DNS records and that they replicated them accurately throughout the world. Oh, you don’t trust them? You are using DNSSEC? Great!</p>
+<p>How do you rotate the DNSSEC keys? Cause those also expire. Oh, and of course your registrar does not offer an API to change the DS records. Of course you have monitoring for this as well. </p>
+<p>/rant – As you can probably tell, running your own DNS is already a superbly big challenge. Even if you get your server’s setup 100% correct, chances are you are going to fail at DNS at some point. Make sure to check out <a href="https://danrl.com/talks/slides-danrl-2017-gopher-meetup-human-friendly-dns.pdf">Dan’s presentation about other challenges in DNS land</a> and how he solved them at eGym. DNS today is superbly complex and if you can avoid it, please don’t ever run <em>“apt install bind9”</em>. </p>
+<h3>SPF / DKIM</h3>
+<p>Email in general is highly reliant on a few special DNS entries to establish trust between parties that don’t know each other. </p>
+<p>The sender policy framework (SPF) is a simple DNS entry that controls which mail servers are allowed to send emails for a particular domain. In most cases you just want your MX server to be able to send emails, so you’d be good with:</p>
+<pre class="wp-block-code"><code class="">v=spf1 mx ~all</code></pre>
+<p>This will make anything that is not sent from a valid MX DNS entry usually be handled as spam on the receiving MTA. (But not all MTAs verify SPF records) Sounds simple right?</p>
+<p>DKIM on the other hand adds signatures to every email that leaves your server. Your keys need to be also saved in a DNS record. I’ve used opendkim in the past, but the setup is also tedious and another extra step for each domain that I want to use. </p>
+<p>Without SPF and DKIM you can probably forget to ever land in anyone’s inbox these days. Your email will in most cases be classified as spam and will not be read by many people. In some cases I’ve even seen other mail server just rejecting my mail because of a misconfiguration. (Which is absolutely the right thing to do – don’t get me wrong) </p>
+<p>I haven’t even mentioned <a href="https://de.wikipedia.org/wiki/DNS-based_Authentication_of_Named_Entities">DANE</a> did I?</p>
+<h2>Summary</h2>
+<p>The whole challenge in email is that its a distributed system where each part is controlled by different entities. You can setup your own domain / server in the best possible way and take all the precautions. (Trust me, you’ll fail more than once) </p>
+<p><strong>Chances are high that your email will still land in spam folders.</strong></p>
+<p>You will have to deal with the misconfiguration of other MTAs, Microsoft’s special handling of blacklisting and many other Email Blacklists out there (RBLs). </p>
+<p>The standards are old and the software mostly cobbled together. Therefore you will have to implement a multitude of them to get decent delivery rates and not get swamped by spam. Of course don’t forget to add TLS to all your services, because we actually want transport to also be encrypted because nobody is using end to end encryption for mails.</p>
+<p>I’ve been failing over the last ten years at getting my setup to a point where I’m completely happy with it. The time spent was significant (several weeks worth) and the results were at best mediocre. </p>
+<p>So in order to no longer have to deal with this mess, I’ve finally bought <a href="https://gsuite.google.com/intl/de/">G Suite</a> and am migrating most of my users over.  Initial impressions are decent and it has most settings I’ve needed in the past years.</p>
+<p>So long postfix, dovecot and ispconfig thanks for all the mails!</p>
+</div>
+									</div>
+
+				<footer class="entry-meta entry-meta-footer">
+									</footer>
+			</div>
+
+		</div>
+	</article>
+</div>
+
+							
+<div class="entry-author">
+	<div class="author-avatar">
+		<img alt="" src="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=80&d=mm&r=g" srcset="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80">	</div>
+
+	<div class="author-heading">
+		<h2 class="author-title">
+            Published by <span class="author-name">admin</span>        </h2>
+	</div>
+
+	<p class="author-bio">
+				<a class="author-link" href="https://q409640976.github.io/author/admin/" rel="author">
+			View all posts by admin		</a>
+	</p>
+</div>
+
+							
+	<nav class="navigation post-navigation" role="navigation" aria-label="文章">
+		<h2 class="screen-reader-text">文章导航</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://q409640976.github.io/2020/01/07/a-wordpress-site-on-s3-as-flat-files/" rel="prev"><span class="meta-nav">Prev</span> <span class="post-title">A wordpress site on S3 as flat files</span></a></div><div class="nav-next"><a href="https://q409640976.github.io/2020/04/28/hello-world/" rel="next"><span class="meta-nav">Next</span> <span class="post-title">Hello world!</span></a></div></div>
+	</nav>
+							
+												</div>
+
+					</main>
+				</div>
+
+				<div id="site-sidebar" class="sidebar-area col-16 col-sm-16 col-md-16 col-lg-5 col-xl-5 col-xxl-5">
+	<div id="secondary" class="sidebar widget-area sidebar-widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="https://q409640976.github.io/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">近期文章</h2>		<ul>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/28/hello-world/">Hello world!</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/05/operating-your-own-mail-server-is-a-pain/" aria-current="page">Operating your own mail server is a pain</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/a-wordpress-site-on-s3-as-flat-files/">A wordpress site on S3 as flat files</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/using-terraform-to-create-a-mariadb-web/">Using Terraform to create a Mariadb Web</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2019/12/04/wordpress-web-converted-to-flat-file-s3-part-2/">WordPress web converted to flat file S3 – Part 2</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">近期评论</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href="https://wordpress.org/" rel="external nofollow ugc" class="url">A WordPress Commenter</a></span>发表在《<a href="https://q409640976.github.io/2020/04/28/hello-world/#comment-1">Hello world!</a>》</li></ul></aside>	</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+	<footer id="colophon" class="site-footer">
+		
+<div class="site-info">
+	<div class="site-info-inside">
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+					<div class="credits-wrapper">
+						<div class="credits credits-blog"></div><div class="credits credits-designer">Amphibious Theme by <a href="https://templatepocket.com" title="TemplatePocket">TemplatePocket</a> <span>⋅</span> Powered by <a href="https://wordpress.org" title="WordPress">WordPress</a></div>					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+	</footer>
+
+</div>
+
+<div class="overlay-effect"></div>
+
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/enquire.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/fitvids.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/hover-intent.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/superfish.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/custom.js"></script>
+</body>
+</html>
