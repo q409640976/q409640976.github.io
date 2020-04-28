@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AWS Web and MariaDB on EC2 in terraform modules – My Blog</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//cdn.statically.io">
+
+
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=64/My+Blog.png" sizes="64x64">
+<link rel="icon" href="https://cdn.statically.io/favicons/g/square=1,s=128/My+Blog.png" sizes="128x128">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.statically.io/favicons/g/square=1,s=256/My+Blog.png">
+<link rel="stylesheet" id="wp-block-library-css" href="https://cdn.statically.io/wp/c/5.4/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-bootstrap-grid-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/bootstrap-grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-5-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/css/fontawesome-all.css" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-fonts-css" href="https://fonts.googleapis.com/css?family=Poppins%3A400%2C400i%2C700%2C700i%7CRubik%3A400%2C400i%2C700%2C700i&subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="amphibious-style-css" href="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/style.css" type="text/css" media="all">
+<style id="amphibious-style-inline-css" type="text/css">
+.archive-title-control { clip: rect(1px, 1px, 1px, 1px); position: absolute; }
+</style>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/wp/c/5.4/wp-includes/js/jquery/jquery-migrate.min.js"></script>
+
+
+
+
+
+
+
+
+
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	
+	</head>
+<body class="post-template-default single single-post postid-12 single-format-standard has-site-branding has-wide-layout has-right-sidebar">
+<div id="page" class="site-wrapper site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+<header id="masthead" class="site-header">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+
+				<div class="site-header-inside-wrapper">
+					
+<div class="site-branding-wrapper">
+	<div class="site-logo-wrapper"></div>
+	<div class="site-branding">
+					<p class="site-title"><a href="https://q409640976.github.io/" title="My Blog" rel="home">My Blog</a></p>
+		
+				<p class="site-description">
+			My WordPress Blog		</p>
+			</div>
+</div>
+
+<nav id="site-navigation" class="main-navigation">
+	<div class="main-navigation-inside">
+		<div class="toggle-menu-wrapper">
+			<a href="#header-menu-responsive" title="Menu" class="toggle-menu-control">
+				<span class="toggle-menu-label">Menu</span>
+			</a>
+		</div>
+
+		<div id="menu-1" class="site-header-menu-wrapper site-header-menu-responsive-wrapper"><ul class="site-header-menu site-header-menu-responsive">
+<li><a href="https://q409640976.github.io/">首页</a></li><li class="page_item page-item-2"><a href="https://q409640976.github.io/sample-page/">Sample Page</a></li>
+</ul></div>
+	</div>
+</nav>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>
+
+	<div id="content" class="site-content">
+
+	<div class="site-content-inside">
+		<div class="container">
+			<div class="row">
+
+				<div id="primary" class="content-area col-16 col-sm-16 col-md-16 col-lg-11 col-xl-11 col-xxl-11">
+					<main id="main" class="site-main">
+
+						<div id="post-wrapper" class="post-wrapper post-wrapper-single post-wrapper-single-post">
+												
+							
+<div class="post-wrapper-hentry">
+	<article id="post-12" class="post-12 post type-post status-publish format-standard hentry category-uncategorized">
+		<div class="post-content-wrapper post-content-wrapper-single post-content-wrapper-single-post">
+
+			
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+					<header class="entry-header">
+						<h1 class="entry-title">AWS Web and MariaDB on EC2 in terraform modules</h1>					</header>
+
+					<div class="entry-meta entry-meta-header-after">
+						<span class="byline entry-meta-icon">by <span class="author vcard"><a class="entry-author-link url fn n" href="https://q409640976.github.io/author/admin/" rel="author"><span class="entry-author-name">admin</span></a></span></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Posted on</span><a href="https://q409640976.github.io/2019/01/05/aws-web-and-mariadb-on-ec2-in-terraform-modules/" rel="bookmark"><time class="entry-date published updated" datetime="2019-01-05T21:52:45+08:00">2019-01-05</time></a></span>					</div>
+				</div>
+
+				<div class="entry-content">
+					<div>
+<p>This is an example of a terraform template and modukles to create the network infrastructure and nodes for a public facing Web server accessing an EC2 MySQL database in a private subnet.</p>
+<p>The main point of this exercise was to convert the previous example using just one template into one using numerous modules.</p>
+<p>The cost of this infrastructure is measured in single dollars</p>
+<p>The “.txt” files listed may need to be converted using either an editor or “dos2unix” if the newline format is incorrect.</p>
+<p>e.g. using vi enter</p>
+<p>“s/VM//g”</p>
+<h4>KEYS</h4>
+<p>Add the entry</p>
+<p>key_name = “devopsdba2″</p>
+<p>to your secrets file “SECRET_variables.auto.tfvars”</p>
+<h2>GIT</h2>
+<p>All the following operations have been completed on a Centos VM.</p>
+<p>If the following git repository hasn’t been download already then execute the following:</p>
+<pre class="wp-block-preformatted">$ cd ~/git  
+$ git clone https://github.com/paulhhallam/AWS-Web-and-EC2-MySQL-db-in-terraform-modules.git
+$cd AWS-Web-and-EC2-MySQL-db-in-terraform-modules</pre>
+<h2>Terraform</h2>
+<p>The files in this terraform configuration are :</p>
+<pre class="wp-block-preformatted">DB<br>DNA-AND-DHCP<br>EC2<br>ROUTING<br>SECURITYG<br>SUBNETS<br>VPC<br>DevMain.tf     Template controller<br>MYoutputs.tf   List of outputs<br>MYvars.tf      Defines lots of variables <br>TOPoutputs.tf  List of outputs<br>TOPvars.tf     Defines lots of variables <br>database.txt   Instructions to install and set up the mysql database<br>secret.tf      Secret variables<br>secrets.tf     Secret variables<br>webphpapp.txt  Instructions to install and set up the web server </pre>
+<h2>Issues</h2>
+<p>Any issues can be investigated by checking the log files on the instances at /var/log e.g.</p>
+<ul>
+<li>/var/log/cloud-init.log</li>
+<li>/var/log/yum.log</li>
+</ul>
+<h2>Note</h2>
+<p>For simplicity I have hardcoded certain values but these can obviously be changed to secrets, environment variables or entered on the terraform command lines.</p>
+<p>The MariaDB user and password is hardcoded in database.txt</p>
+<p>If you use these scripts please remember to change these values.</p>
+<h2>Terraform</h2>
+<p>The terraform commands to run the scripts are:</p>
+<pre class="wp-block-code"><code>terraform init   -var-file="<location and name of your secrets file>.auto.tfvars"
+terraform apply  -var-file="<location and name of your secrets file>.auto.tfvars"
+terraform delete -var-file="<location and name of your secrets file>.auto.tfvars"</code></pre>
+<p>where the contents of the file .auto.tfvars is similar to the following: MySecretKeys.auto.tfvars</p>
+<ul>
+<li>access_key = “<your AWS access key”</li>
+<li>secret_key = “<your AWS secret key name>”</li>
+<li>key_name = “<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">EC2 key pair</a> resource name></li>
+</ul>
+<h2>Test</h2>
+<p>Please note that due to the OS updates and installations involved the availability of the web server and database may actually take over 10 minutes after the terraform script has completed.</p>
+<p>Once created the infrastructure can be tested by accessing the web pages:</p>
+<pre class="wp-block-code"><code>http://<Public DNS of the EC2 instance phpapp>/
+This will present the Apache HTTP Server Test Page
+
+http://<Public DNS of the EC2 instance phpapp>/mydb2.php
+This will present the PHP info page for the phpapp EC2 instance
+
+http://<Public DNS of the EC2 instance phpapp>/mydb.php
+This will present the result of a query against the Mariadb database on the second EC2 instance.
+Please be patient as it can take over 5 minutes for the yum update, patching and database setup to complete before the page is available.
+
+The page just displays the text "Mycol: MyValues" and nothing else.</code></pre>
+<figure class="wp-block-image"><img src="http://devops.isitdevops.com/wp-content/uploads/2019/01/web1.png" alt="" class="wp-image-438" srcset="http://devops.isitdevops.com/wp-content/uploads/2019/01/web1.png 549w,http://devops.isitdevops.com/wp-content/uploads/2019/01/web1-300x268.png 300w" sizes="(max-width: 549px) 100vw, 549px"></figure>
+<figure class="wp-block-image"><img src="http://2.gravatar.com/avatar/8a1327cdafc0f7010f87aa1864663969?s=49&d=mm&r=g" alt=""></figure>
+<p>Author<a href="http://localhost:8081/testsite/author/admin/">admin</a>Posted on<a href="http://localhost:8081/testsite/aws-web-and-ec2-mysql-mariadb-in-one-terraform-template/">January 3, 2019</a>Categories<a href="http://localhost:8081/testsite/category/aws/">AWS</a>, <a href="http://localhost:8081/testsite/category/mysql-mariadb/">MySQL/MariaDB</a>Tags<a href="http://localhost:8081/testsite/tag/aws-ec2-mysql/">aws ec2 mysql</a>, <a href="http://localhost:8081/testsite/tag/mariadb/">mariadb</a><a href="http://localhost:8081/testsite/wp-admin/post.php?post=406&action=edit">Edit</a></p>
+</div>
+									</div>
+
+				<footer class="entry-meta entry-meta-footer">
+									</footer>
+			</div>
+
+		</div>
+	</article>
+</div>
+
+							
+<div class="entry-author">
+	<div class="author-avatar">
+		<img alt="" src="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=80&d=mm&r=g" srcset="https://secure.gravatar.com/avatar/f3afa0e319b82dfaa062d78b9f3e90d9?s=160&d=mm&r=g 2x" class="avatar avatar-80 photo" height="80" width="80">	</div>
+
+	<div class="author-heading">
+		<h2 class="author-title">
+            Published by <span class="author-name">admin</span>        </h2>
+	</div>
+
+	<p class="author-bio">
+				<a class="author-link" href="https://q409640976.github.io/author/admin/" rel="author">
+			View all posts by admin		</a>
+	</p>
+</div>
+
+							
+	<nav class="navigation post-navigation" role="navigation" aria-label="文章">
+		<h2 class="screen-reader-text">文章导航</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://q409640976.github.io/2019/01/04/connect-to-private-ec2-via-public-ec2/" rel="prev"><span class="meta-nav">Prev</span> <span class="post-title">Connect to private EC2 via public EC2</span></a></div><div class="nav-next"><a href="https://q409640976.github.io/2019/05/02/chase-your-dreams/" rel="next"><span class="meta-nav">Next</span> <span class="post-title">Chase your Dreams</span></a></div></div>
+	</nav>
+							
+												</div>
+
+					</main>
+				</div>
+
+				<div id="site-sidebar" class="sidebar-area col-16 col-sm-16 col-md-16 col-lg-5 col-xl-5 col-xxl-5">
+	<div id="secondary" class="sidebar widget-area sidebar-widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="https://q409640976.github.io/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widget-title">近期文章</h2>		<ul>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/28/hello-world/">Hello world!</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/04/05/operating-your-own-mail-server-is-a-pain/">Operating your own mail server is a pain</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/a-wordpress-site-on-s3-as-flat-files/">A wordpress site on S3 as flat files</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2020/01/07/using-terraform-to-create-a-mariadb-web/">Using Terraform to create a Mariadb Web</a>
+									</li>
+											<li>
+					<a href="https://q409640976.github.io/2019/12/04/wordpress-web-converted-to-flat-file-s3-part-2/">WordPress web converted to flat file S3 – Part 2</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">近期评论</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href="https://wordpress.org/" rel="external nofollow ugc" class="url">A WordPress Commenter</a></span>发表在《<a href="https://q409640976.github.io/2020/04/28/hello-world/#comment-1">Hello world!</a>》</li></ul></aside>	</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+	<footer id="colophon" class="site-footer">
+		
+<div class="site-info">
+	<div class="site-info-inside">
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+					<div class="credits-wrapper">
+						<div class="credits credits-blog"></div><div class="credits credits-designer">Amphibious Theme by <a href="https://templatepocket.com" title="TemplatePocket">TemplatePocket</a> <span>⋅</span> Powered by <a href="https://wordpress.org" title="WordPress">WordPress</a></div>					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+	</footer>
+
+</div>
+
+<div class="overlay-effect"></div>
+
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/enquire.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/fitvids.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/hover-intent.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/superfish.js"></script>
+<script type="text/javascript" src="https://cdn.statically.io/sites/help.heliohost.org/wp-content/themes/amphibious/js/custom.js"></script>
+</body>
+</html>
